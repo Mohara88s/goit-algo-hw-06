@@ -1,5 +1,4 @@
 import networkx as nx
-import matplotlib.pyplot as plt
 
 # Створити граф
 G = nx.Graph()
@@ -45,22 +44,3 @@ edges = [
 for city1, city2, distance in edges:
     G.add_edge(city1, city2, weight=distance)
 
-# Обчислити та вивести кількість вершин, ребер та ступені вершин графа
-print(f'Кількість вершин в графі: {G.number_of_nodes()}')
-print(f'Кількість ребер в графі: {G.number_of_edges()}')
-print('Ступені вершин графа:')
-for city, degree in G.degree():
-    print(f"{city}: {degree}")
-
-# Візуалізувати граф
-options = {
-    "node_color": "yellow",
-    "edge_color": "lightblue",
-    "node_size": 500,
-    "width": 3,
-    "with_labels": True,
-}
-pos = nx.spring_layout(G, seed=12)
-nx.draw(G, pos, **options)
-plt.title("Граф міст України")
-plt.show()
