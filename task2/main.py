@@ -1,5 +1,6 @@
 import networkx as nx
 from collections import deque
+from itertools import zip_longest
 
 # Створити граф
 G = nx.Graph()
@@ -53,12 +54,11 @@ def dfs_recursive(graph, vertex, visited=None, path=None, parant=None):
     return path
 
 def bfs_iterative(graph, start):
-    visited = set()
+    visited = set(start)
     queue = deque([start])
     path = []
     while queue:
         vertex = queue.popleft()
-        visited.add(vertex)
         for neighbor in graph[vertex]:
             if neighbor not in visited:
                 # print(neighbor, end=" ")
@@ -67,6 +67,17 @@ def bfs_iterative(graph, start):
                 path.append((vertex, neighbor))
     return path
 
-print(dfs_recursive(G, 'Рівне'))
-print()
-print(bfs_iterative(G, 'Рівне'))
+print('-'*65)
+print(f'|          Шлях DFS             |          Шлях BFS             |')
+print('-'*65)
+for dfs, bfs in zip_longest(dfs_recursive(G, 'Рівне'), bfs_iterative(G, 'Рівне'), fillvalue=(None, None)):
+    if dfs[0] and dfs[1]:
+        dfs = f'{dfs[0]} - {dfs[1]}'
+    else:
+        dfs = ''
+    if bfs[0] and bfs[1]:
+        bfs = f'{bfs[0]} - {bfs[1]}'
+    else:
+        bfs = ''
+    print(f'|{dfs:30} | {bfs:30}|')
+print('-'*65)
