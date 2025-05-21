@@ -54,7 +54,7 @@ def dfs_recursive(graph, vertex, visited=None, path=None, parant=None):
     return path
 
 def bfs_iterative(graph, start):
-    visited = set(start)
+    visited = set({start})
     queue = deque([start])
     path = []
     while queue:

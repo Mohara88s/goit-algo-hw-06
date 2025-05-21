@@ -46,6 +46,7 @@ for city, degree in G.degree():
     print(f"{city}: {degree}")
 
 # Візуалізувати граф
+plt.figure(figsize=(12, 8)) 
 options = {
     "node_color": "yellow",
     "edge_color": "lightblue",
@@ -53,7 +54,7 @@ options = {
     "width": 3,
     "with_labels": True,
 }
-pos = nx.spring_layout(G, seed=400)
+pos = nx.spring_layout(G, seed=42)
 nx.draw(G, pos, **options)
 plt.title("Граф міст України")
 plt.show()
